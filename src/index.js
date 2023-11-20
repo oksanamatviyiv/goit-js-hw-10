@@ -2,7 +2,7 @@ import axios from 'axios';
 import { fetchCatByBreed } from './cat-api.js';
 import SlimSelect from 'slim-select';
 new SlimSelect({
-  select: `breed-select`,
+  select: `#breed-select`,
 });
 import Notiflix from 'notiflix';
 
@@ -32,7 +32,6 @@ async function populateBreedSelect() {
     Notiflix.Notify.failure(`Oops! Something went wrong! Try reloading the page!`)
   }
 }
-
 fetchBreedSelect.addEventListener('change', async event => {
   const breedId = event.target.value;
   try {
@@ -44,7 +43,7 @@ fetchBreedSelect.addEventListener('change', async event => {
         <h2>${breedDetails.name}</h2>
         <p>${breedDetails.description}</p>
         <p>${breedDetails.temperament}</p>
-        <img src="${imageUrl}" alt="${breedDetails.name}" />
+        <img src="${imageUrl}" alt="${breedDetails.name}" width="580px" />
       `;
     }
     hideLoader(error);
