@@ -3,6 +3,29 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <style> 
+    .loader{
+    display: block;
+    position: relative;
+    height: 2px;
+    width: 200px;
+    background: rgb(122, 190, 180);
+    overflow: hidden;
+  }
+  .loader:after{
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 0;
+    height: 100%;
+    width: 0;
+    background: #444d4e;
+    animation: 6s prog ease-in infinite;
+  }
+  @keyframes prog {
+    to  {   width: 100%;}
+  }
+    </style>
     <title>Homework 10</title>
   </head>
   <body>
@@ -10,7 +33,6 @@
     <p class="loader">Loading data, please wait...</p>
     <p class="error">Oops! Something went wrong! Try reloading the page!</p>
     <div class="cat-info"></div>
-
     <script src="index.js" type="module"></script>
   </body>
 </html>
