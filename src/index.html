@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <style> 
     .loader {
-  display: none; /* Initially hide the loader */
+  display: none;
   position: relative;
   height: 2px;
   width: 200px;
@@ -28,11 +28,15 @@
     p {
       width: 580px;
     }
+    .error {
+  display: none; 
+}
     </style>
     <title>Homework 10</title>
   </head>
   <body>
-    <select id="breedSelect" class="breed-select"></select>
+    <select id="breedSelect" class="breed-select">
+  <option value="">---- Select a breed ----</option></select>
     <p class="loader">Loading data, please wait...</p>
     <p class="error">Oops! Something went wrong! Try reloading the page!</p>
     <div class="cat-info"></div>

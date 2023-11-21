@@ -13,9 +13,6 @@ const loader = document.querySelector('.loader');
 const error = document.querySelector('.error');
 
 function populateBreedSelect() {
-  
-  showLoader();
-  
   fetchBreeds()
     .then(breeds => {
       breeds.forEach(breed => {
@@ -24,15 +21,26 @@ function populateBreedSelect() {
         option.textContent = breed.name;
         fetchBreedSelect.appendChild(option);
       });
-      hideLoader();
     })
     .catch(error => {
-      Notiflix.Notify.failure(`Oops! Something went wrong! Try reloading the page!`);
+      Notiflix.Notify.failure(
+        `Oops! Something went wrong! Try reloading the page!`
+      );
     });
 }
+
 fetchBreedSelect.addEventListener('change', event => {
   const breedId = event.target.value;
-    showLoader(breedId);
+
+  document.querySelector('.error').style.display = 'none';
+
+  if (breedId === '') {
+    catInfoDiv.innerHTML = '';
+    hideLoader();
+    return;
+  }
+
+  showLoader();
   fetchCatByBreed(breedId)
     .then(({ imageUrl, breedDetails }) => {
       if (breedDetails) {
@@ -43,11 +51,13 @@ fetchBreedSelect.addEventListener('change', event => {
           <img src="${imageUrl}" alt="${breedDetails.name}" width="580px" />
         `;
       }
-      hideLoader(); 
-      Notiflix.Notify.info(`Loading data, please wait...`);
+      hideLoader();
     })
     .catch(error => {
-      Notiflix.Notify.failure(`Oops! Something went wrong! Try reloading the page!`);
+      Notiflix.Notify.failure(
+        `Oops! Something went wrong! Try reloading the page!`
+      );
+      document.querySelector('.error').style.display = 'block';
     });
 });
 
@@ -61,7 +71,5 @@ function showLoader() {
 
 function hideLoader() {
   loader.style.display = 'none';
+
 }
-
-
-
